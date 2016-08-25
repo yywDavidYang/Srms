@@ -1530,7 +1530,7 @@
 				TargetAttributes = {
 					DEF0BB381CFD507400A65A99 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = PKUCNHD867;
+						DevelopmentTeam = 5KGC7V7EE9;
 					};
 					DEF0BB511CFD507400A65A99 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1950,8 +1950,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: GUANGZHOU REGENTSOFT TECHNOLOGY CO.,LTD.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GUANGZHOU REGENTSOFT TECHNOLOGY CO.,LTD.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1964,9 +1964,9 @@
 				INFOPLIST_FILE = Srms/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lijing.Srms;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lijing.Srms1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5c8a6d28-bc9e-41e0-99cf-a0180e95ed2a";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Srms-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1978,8 +1978,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: GUANGZHOU REGENTSOFT TECHNOLOGY CO.,LTD.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GUANGZHOU REGENTSOFT TECHNOLOGY CO.,LTD.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1992,9 +1992,9 @@
 				INFOPLIST_FILE = Srms/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lijing.Srms;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lijing.Srms1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5c8a6d28-bc9e-41e0-99cf-a0180e95ed2a";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Srms-Bridging-Header.h";
 			};
 			name = Release;

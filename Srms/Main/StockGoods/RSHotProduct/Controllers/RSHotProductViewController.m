@@ -495,7 +495,7 @@
 }
 //获取商品信息的请求
 -(void)httpRequestgetGoodsbyfliter{
-    NSLog(@"----->sdegwegwe = %@, name = %@",categoryString,categoryNameString);
+//    NSLog(@"----->sdegwegwe = %@, name = %@",categoryString,categoryNameString);
     NSArray * array = @[@{@"categoryName":categoryNameString,@"categorys":@[categoryString]}];
     [self getGoodsDataWithParamsArray:array];
 }

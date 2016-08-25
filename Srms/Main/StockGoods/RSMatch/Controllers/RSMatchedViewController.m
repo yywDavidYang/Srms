@@ -252,13 +252,11 @@
     
         MatchedShopViewController * matchView = [[MatchedShopViewController alloc] init];
         matchView.pidString = [NSString stringWithFormat:@"%@",pidString] ;
-//        matchView.flagString = [NSString stringWithFormat:@"%@",_flagString];
         matchView.hidesBottomBarWhenPushed = YES;
         matchView.currentNavigationController = self.currentNavigationController;
         [self.currentNavigationController pushViewController:matchView animated:YES];
     }else{
         MatchedCollectionViewCell *cell = (MatchedCollectionViewCell *)[matchedCellTabView cellForItemAtIndexPath:indexPath];
-        NSLog(@"22======%ld",(long)indexPath.item);
          NSString * pidString = nil;
         
         if (!cell.selectBtn.selected) {

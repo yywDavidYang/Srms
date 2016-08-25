@@ -145,8 +145,7 @@
                 _loginTipsLabel.hidden = YES;
                 NSError *err;
                 NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&err];
-                
-                NSLog(@"登录获取回来的数据 ＝＝ %@",dic);
+                NSLog(@"------>%@",dic);
                 if([dic[@"msg"] isEqualToString:@"账号或密码错误！"]){
                     
                     _loginTipsLabel.hidden = NO;
