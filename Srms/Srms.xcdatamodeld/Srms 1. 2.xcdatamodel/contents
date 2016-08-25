@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
+    <entity name="MatchedData" syncable="YES">
+        <attribute name="context" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="disPrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="disRate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goodsNo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalA" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalAmount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalB" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalQty" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProductData" syncable="YES">
+        <attribute name="arrangeInPairs" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="brand" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colors" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentUserHadCommented" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deliveredNum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="disPrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dpPrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goodsdesc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goodsName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goodsNo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mainPictureUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="material" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="materialType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pattern" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pictures" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priceranges" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="range" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="replenishedNum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="season" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sex" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sizes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stockNnm" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="substitutes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalAmount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalQty" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unDeliveredNum" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ShopingData" syncable="YES">
+        <attribute name="disPrice" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="disRate" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="dpPrice" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="goodsCustom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goodsInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goodsName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goodsNo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mainPictureUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalAmount" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="totalQty" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="SizeData" syncable="YES">
+        <attribute name="context" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="disPrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="disRate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="goodsNo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalA" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalAmount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalB" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalQty" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ProductData" positionX="-63" positionY="63" width="128" height="495"/>
+        <element name="ShopingData" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="SizeData" positionX="-54" positionY="144" width="128" height="165"/>
+        <element name="MatchedData" positionX="-54" positionY="135" width="128" height="165"/>
+    </elements>
+</model>

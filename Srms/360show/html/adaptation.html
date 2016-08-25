@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="height=device-height,width=device-width,initial-scale=1.0,user-scalable=no" />
+		<title>搭配主页面</title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/adaptation.css" />
+	</head>
+
+	<body>
+		<div class="top_mask"></div>
+		<div class="col-sm-4 col-sm-offset-4 top_view no-p" id="menu">
+			<div class="col-sm-10 col-sm-offset-1 top_btn_ok no-p" style="margin-top: 35px;" id="saveNew">保存</div>
+			<div class="col-sm-10 col-sm-offset-1 top_btn_ok no-p" id="new">新建</div>
+			<div class="col-sm-10 col-sm-offset-1 top_btn_ok no-p" id="opens">打开</div>
+			<div class="col-sm-10 col-sm-offset-1 top_btn_cancel no-p" style="margin-bottom: 35px;">取消</div>
+		</div>
+		<div class="col-sm-4 col-sm-offset-4 top_view no-p" id="save">
+			<div class="col-sm-12 top-title" style="margin-top: 35px;">时候保存当前搭配？</div>
+			<div class="col-sm-10 col-sm-offset-1 top_btn_ok no-p" id="saveYes">保存</div>
+			<div class="col-sm-10 col-sm-offset-1 top_btn_ok no-p" id="saveNo">不保存</div>
+			<div class="col-sm-10 col-sm-offset-1 top_btn_cancel no-p" style="margin-bottom: 35px;">取消</div>
+		</div>
+		<div class="col-sm-4 col-sm-offset-4 top_view no-p" id="saveInfo" style="margin-top: 15vh;">
+			<div class="col-sm-12 top-title" style="margin-top: 40px;">输入搭配描述</div>
+			<div class="col-sm-10 col-sm-offset-1 no-p">
+				<input type="text" class="top-input" placeholder="搭配标题" id="pName"/>
+			</div>
+			<div class="col-sm-10 col-sm-offset-1 no-p">
+				<textarea class="top-textarea" maxlength="100" placeholder="搭配描述(100字以内)..." id="pText"></textarea>
+			</div>
+			<div class="col-sm-10 col-sm-offset-1 top_btn_ok no-p" style="color: ghostwhite;background-color: #4BAF4F;" id="postMsg">确定</div>
+			<div class="col-sm-10 col-sm-offset-1 top_btn_cancel no-p" style="margin-bottom: 35px;">取消</div>
+			
+		</div>
+		<div class="container-fluid no-p">
+			<div class="col-sm-12 menu-bar no-p">
+				<div class="col-sm-8 no-p left-m">
+					<div class="col-sm-4 no-p">
+						<div class="back"></div>
+					</div>
+					<div class="col-sm-4">
+						<div class="col-sm-10 col-sm-offset-1 add">添加商品</div>
+					</div>
+					<div class="col-sm-4 no-p">
+						<div class="menu"></div>
+					</div>
+				</div>
+				<div class="col-sm-4 no-p right-m">物品信息</div>
+			</div>
+			<div class="col-sm-12 show-mv no-p">
+				<div class="col-sm-8 left-v">
+					<div class="col-sm-12 show no-p">
+						<div class="mask"></div>
+					</div>
+					<div class="col-sm-8 delete no-p">
+						<div class="col-sm-6 col-sm-offset-3 no-p">
+							<div class="col-sm-3 no-p deletes" >
+								<div class="col-sm-10 col-sm-offset-1 del no-p">
+									<img class="col-sm-6 col-sm-offset-3 no-p" src="../img/icon1.png" style="margin-top: 1vh;"/>
+								<label class="col-xs-12 no-p">删除</label></div>
+							</div>
+							<div class="col-sm-3 no-p refreshs">
+								<div class="col-sm-10 col-sm-offset-1 del no-p">
+									<img class="col-sm-6 col-sm-offset-3 no-p" src="../img/icon2.png" style="margin-top: 1vh;"/>
+								<label class="col-xs-12 no-p">刷新</label></div>
+							</div>
+							<div class="col-sm-3 no-p ups">
+								<div class="col-sm-10 col-sm-offset-1 del no-p">
+									<img class="col-sm-6 col-sm-offset-3 no-p" src="../img/icon3.png" style="margin-top: 1vh;"/>
+								<label class="col-xs-12 no-p">上移</label></div>
+							</div>
+							<div class="col-sm-3 no-p downs">
+								<div class="col-sm-10 col-sm-offset-1 del no-p">
+									<img class="col-sm-6 col-sm-offset-3 no-p" src="../img/icon4.png" style="margin-top: 1vh;"/>
+								<label class="col-xs-12 no-p">下移</label></div>
+							</div>
+ 						</div>
+					</div>
+				</div>	
+				<div class="col-sm-4 no-p right-v">
+					<!--<div class="col-sm-12 info-line">
+						<div class="col-sm-1 info-logo no-p">
+							<span class="glyphicon glyphicon-record"></span>
+						</div>
+						<div class="col-sm-11 no-p">
+							<div class="col-sm-12 info-title no-p">黑色休闲上衣</div>
+							<div class="col-sm-12 info-ordered no-p">订货总数：100件</div>
+						</div>
+					</div>
+					<div class="col-sm-12 info-line">
+						<div class="col-sm-1 info-logo no-p">
+							<span class="glyphicon glyphicon-record"></span>
+						</div>
+						<div class="col-sm-11 no-p">
+							<div class="col-sm-12 info-title no-p">藏蓝色休闲长裤</div>
+							<div class="col-sm-12 info-ordered no-p">订货总数：10件</div>
+						</div>
+					</div>
+					<div class="col-sm-12 info-line">
+						<div class="col-sm-1 info-logo no-p">
+							<span class="glyphicon glyphicon-record"></span>
+						</div>
+						<div class="col-sm-11 no-p">
+							<div class="col-sm-12 info-title no-p">高大上双肩背包</div>
+							<div class="col-sm-12 info-ordered no-p">订货总数：500件</div>
+						</div>
+					</div>
+					<div class="col-sm-12 info-line">
+						<div class="col-sm-1 info-logo no-p">
+							<span class="glyphicon glyphicon-record"></span>
+						</div>
+						<div class="col-sm-11 no-p">
+							<div class="col-sm-12 info-title no-p">鸭舌帽</div>
+							<div class="col-sm-12 info-ordered no-p">订货总数：80件</div>
+						</div>
+					</div>
+					<div class="col-sm-12 info-line">
+						<div class="col-sm-1 info-logo no-p">
+							<span class="glyphicon glyphicon-record"></span>
+						</div>
+						<div class="col-sm-11 no-p">
+							<div class="col-sm-12 info-title no-p">蓝色运动鞋</div>
+							<div class="col-sm-12 info-ordered no-p">订货总数：150件</div>
+						</div>
+					</div>
+					<div class="col-sm-12 info-line">
+						<div class="col-sm-1 info-logo no-p">
+							<span class="glyphicon glyphicon-record"></span>
+						</div>
+						<div class="col-sm-11 no-p">
+							<div class="col-sm-12 info-title no-p">黑色休闲上衣</div>
+							<div class="col-sm-12 info-ordered no-p">订货总数：600件</div>
+						</div>
+					</div>-->
+					<!--<div class="col-sm-12 info-line no-p">
+						<div class="col-sm-12 info-title-checked">
+							<div class="col-sm-6 left no-p">休閒長褲</div>
+							<div class="col-sm-6 right no-p">訂貨總數：3000件</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="col-sm-12 info-checked no-p">
+								<img class="col-sm-4 col-sm-offset-4" src="../img/img2.png" style="margin-top: 1vh;" />
+								 
+								<div class="col-sm-12 info-title-chek">货号：1254869875</div>
+								<div class="col-sm-6 info-info-chek">类别：长裤</div>
+								<div class="col-sm-6 info-info-chek">款型：普通型</div>
+								<div class="col-sm-6 info-info-chek">年份：2016</div>
+								<div class="col-sm-6 info-info-chek">季节：春</div>
+								<div class="col-sm-6 info-info-chek">性别：女</div>
+								<div class="col-sm-6 info-info-chek">面料：牛仔</div>
+								<div class="col-sm-12">
+									<div class="col-sm-12  info-subtitle">
+										<div class="col-sm-6">价格：￥408</div>
+										<div class="col-sm-6">起批量：1~100</div>
+									</div>
+
+								</div>
+								<div class="col-sm-12">
+									<div class="col-sm-12 info-sub-info">
+										<div class="col-sm-3 no-p">
+											<div class="col-sm-12">库存</div>
+											<div class="col-sm-12">12548</div>
+										</div>
+										<div class="col-sm-3 no-p">
+											<div class="col-sm-12">已补</div>
+											<div class="col-sm-12">1254</div>
+										</div>
+										<div class="col-sm-3 no-p">
+											<div class="col-sm-12">未发</div>
+											<div class="col-sm-12">12548</div>
+										</div>
+										<div class="col-sm-3 no-p">
+											<div class="col-sm-12">在途</div>
+											<div class="col-sm-12">12548</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12" style="overflow-x: scroll;">
+								<table style="margin-top: 2vh;width: 600px;">
+									<tr style="margin-top: 10vh;">
+										<td></td>
+										<td>
+											<div class="size">S</div>
+										</td>
+										<td>
+											<div class="size">S</div>
+										</td>
+										<td>
+											<div class="size">S</div>
+										</td>
+										<td>
+											<div class="size">S</div>
+										</td>
+										<td>
+											<div class="size">S</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="color">黑色</td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+									</tr>
+									<tr>
+										<td class="color">白色</td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+									</tr>
+									<tr>
+										<td class="color">灰色</td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+										<td><input class="inputs" type="text" /></td>
+									</tr>
+
+								</table>
+							</div>
+							<div class="col-sm-12">
+								<hr />
+							</div>
+							<div class="col-sm-12">
+								<div class="col-sm-6 col-sm-offset-3 btns">加入到补货池</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 info-line">
+						<div class="col-sm-1 info-logo no-p">
+							<span class="glyphicon glyphicon-record"></span>
+						</div>
+						<div class="col-sm-11 no-p">
+							<div class="col-sm-12 info-title no-p">高大上双肩背包</div>
+							<div class="col-sm-12 info-ordered no-p">订货总数：500件</div>
+						</div>
+					</div>
+					<div class="col-sm-12 info-line">
+						<div class="col-sm-1 info-logo no-p">
+							<span class="glyphicon glyphicon-record"></span>
+						</div>
+						<div class="col-sm-11 no-p">
+							<div class="col-sm-12 info-title no-p">鸭舌帽</div>
+							<div class="col-sm-12 info-ordered no-p">订货总数：80件</div>
+						</div>
+					</div>
+					<div class="col-sm-12 info-line">
+						<div class="col-sm-1 info-logo no-p">
+							<span class="glyphicon glyphicon-record"></span>
+						</div>
+						<div class="col-sm-11 no-p">
+							<div class="col-sm-12 info-title no-p">蓝色运动鞋</div>
+							<div class="col-sm-12 info-ordered no-p">订货总数：150件</div>
+						</div>
+					</div>
+					<div class="col-sm-12 info-line">
+						<div class="col-sm-1 info-logo no-p">
+							<span class="glyphicon glyphicon-record"></span>
+						</div>
+						<div class="col-sm-11 no-p">
+							<div class="col-sm-12 info-title no-p">黑色休闲上衣</div>
+							<div class="col-sm-12 info-ordered no-p">订货总数：600件</div>
+
+						</div>-->
+					<!--</div>-->
+				</div>
+			</div>
+			<script src="../js/jquery-2.1.0.js"></script>
+			<script src="../js/bootstrap.min.js"></script>
+			<script src="../js/hammer.min.js"></script>
+			<script src="../js/adptation.js"></script>
+			<script src="../js/html2canvas.js"></script>
+			<script>
+				//			var lastObj = "",
+				//				lastIdx = 1,
+				//				mainObj = document.getElementsByClassName("mask")[0];
+				//			var posX = 0;
+				//			var posY = 0;
+				//			var lastPosX = 0;
+				//			var lastPosY = 0;
+				//			var transforms = "",
+				//				tra_p = "",
+				//				tra_r = "",
+				//				tra_t = "";
+				//			$(function() {
+				//				$("img").on("click", function() {
+				//					var trans = $(this)[0].style.transform;
+				//					selectTrans(trans);   
+				//					lastObj = $(this);
+				//					$(this).addClass("checked");
+				//					$(".mask").show();
+				//					pans();
+				//					taps();
+				//				});
+				//				$(".mask").on("click", function() {
+				//					$(this).css({
+				//						"display": "none"
+				//					});
+				//					lastObj.removeClass("checked").css({
+				//						"z-index": 2
+				//					});
+				//				});
+				//				pinchAndRotate();
+				//				//拖动手势
+				////				pans();
+				//				//点击手势
+				////				taps();
+				//			});
+				//
+				//			var initialScale = 1;
+				//
+				//			function pinchAndRotate() {
+				//				var cobjs = new Hammer.Manager(mainObj);
+				//				var pinch = new Hammer.Pinch(); //缩放
+				//				var rotate = new Hammer.Rotate(); //旋转
+				//				rotate.recognizeWith(pinch);
+				//				cobjs.add([pinch, rotate]);
+				//				var pinchs = "",
+				//					rotates = "";
+				//				cobjs.on("pinch rotate", function(ev) {
+				//					ev.preventDefault();
+				//					if(ev.type == "pinch") {
+				//						tra_p = 'rotate(' + parseInt(ev.rotation) + 'deg)';
+				//					} else if(ev.type == "rotate") {
+				//						currentScale = ev.scale - 1;
+				//						currentScale = initialScale + currentScale;
+				//						currentScale = currentScale > 5 ? 5 : currentScale;
+				//						tra_r = 'scale(' + currentScale + ',' + currentScale + ')';
+				//					}
+				//					return false;
+				//						ev.stopPropagation();
+				//
+				//				});
+				//				cobjs.on("pinchend", function(ev) {
+				////					changeTransform();
+				//				});
+				//				cobjs.on("rotateend", function(ev) {
+				////					changeTransform();
+				//				});
+				//			}
+				//
+				//			function pans() {
+				//				if(lastObj) {
+				//					posX=0;posY=0;
+				//					var cobjs = Hammer(lastObj[0]);
+				//					cobjs.on("pan", function(ev) {
+				//						 event.preventDefault();
+				//						posX = ev.deltaX + lastPosX;
+				//						posY = ev.deltaY + lastPosY;
+				//						tra_t = "translate(" + posX + "px," + posY + "px)";					
+				//						console.log(posX + "@@@33@@" +posY)
+				//						changeTransform();
+				//						return false;
+				//						ev.stopPropagation();
+				//					});
+				//					cobjs.on("panend", function(ev) {
+				//						 event.preventDefault();
+				//						lastPosX = posX;
+				//						lastPosY = posY;
+				//						console.log(lastPosX +"~~" +lastPosY);
+				//						return false;
+				//						ev.stopPropagation();
+				////						tra_t = "translate(" + lastPosX + "px," + lastPosY + "px)";
+				////						changeTransform();
+				//					});
+				//				}
+				//			}
+				//
+				//			function taps() {
+				//				//		console.log(document.getElementsByClassName("checked")[0]);
+				//				if(document.getElementsByClassName("checked")[0]) {
+				////					console.log($(".checked")[0])
+				//					var cobjs = Hammer($(".checked")[0]);
+				//					cobjs.on("tap", function(ev) {
+				////						alert("tap~~~~");
+				////						posX=0;posY=0;lastPosX=0;lastPosY=0;
+				//					});
+				//				}
+				//			}
+				//
+				//			function changeTransform() {
+				//				transforms = tra_t + " " + tra_p + " " + tra_r;
+				//				//		console.log(lastObj[0].style);
+				//				lastObj[0].style.transform = transforms;
+				//				lastObj[0].style.oTransform = transforms;
+				//				lastObj[0].style.msTransform = transforms;
+				//				lastObj[0].style.mozTransform = transforms;
+				//				lastObj[0].style.webkitTransform = transforms;
+				//			}
+				//			
+				//			function selectTrans(info){
+				////				console.log(info);
+				//				if(info){
+				//					info = info.replace(" ","");
+				////					console.log(info);
+				//					info = info.split(")");
+				//					for(var i = 0 ; i<info.length ; i++ ){
+				//						if(info[i].split("(")[0] == "translate"){
+				////							var tran_1 = info[i].split("(")[1];
+				////								console.log(tran_1);
+				////								tran_1 = tran_1.split(")")[0];
+				//								console.log(info[i]);
+				//							var	tran_1 = info[i].split("(")[1];
+				////								console.log(tran_1);
+				//								tran_1 = tran_1.split(",");
+				//								posX=0;posY=0;
+				//								lastPosX = parseInt(tran_1[0].split("px"));
+				//								lastPosY = parseInt(tran_1[1].split("px"));
+				//								console.log(lastPosX + "~~~" +lastPosY)
+				////								console.log(tran_1[0].split("px")+"+++"+tran_1[1].split("px"));
+				//						}else if(info[i].split("(")[0] == "rotate"){
+				//							var tran_2 = info[i].split("(")[1];
+				//							   tran_2 = parseInt(tran_2.split(",")[0]);
+				//							
+				//						}else if(info[i].split("(")[0] == "scale"){
+				//							var tran_3 = info[i].split("(")[1];
+				//							   tran_3 = parseInt(tran_3.split("deg")[0]);
+				//						}
+				//					}
+				//				}else{
+				//					posX=0;posY=0;lastPosX=0;lastPosY=0;
+				//				}
+				//			}
+			</script>
+	</body>
+
+</html>
+
+<!--translate(20px,-150px) rotate(120deg) scale(1.5)-->
+<!--"jfsjf,dkasjdk,skjda";[]split("&");-->
