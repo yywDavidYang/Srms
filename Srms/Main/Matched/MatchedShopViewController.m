@@ -128,10 +128,10 @@
             [self.currentNavigationController popViewControllerAnimated:YES];
         });
     };
-//    context[@"logs"] = ^(NSString *string,float angle,float angles){
-//        
-//        NSLog(@"%@,%.2f,%f",string,angle,angles);
-//    };
+    context[@"logs"] = ^(NSString *string,float angle,float angles){
+        
+        NSLog(@"%@,原始－－%f,旋转－－%f",string,angle,angles);
+    };
 }
 
 // scrollerViewDelegate

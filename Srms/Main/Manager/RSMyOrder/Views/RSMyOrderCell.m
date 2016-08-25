@@ -118,9 +118,19 @@
                 
                 titleLabel.text = @"未操作";
             }
-        }else{
-            
-             titleLabel.text = titleString;
+        }else if (i == 2){
+            NSString *numberString =  [NSString stringWithFormat:@"%@.00",[NSString countNumAndChangeformat:titleString]];
+            titleLabel.text = numberString;
+        }
+        else{
+            if ([titleString isEqualToString:@""]||[titleString isEqualToString:@" "]) {
+                
+                titleLabel.text = @"0";
+            }else{
+                
+                 titleLabel.text = [NSString countNumAndChangeformat:titleString];;
+            }
+             NSLog(@".....%@",titleString);
         }
         
         UILabel *lineLabel = [[UILabel alloc]init];

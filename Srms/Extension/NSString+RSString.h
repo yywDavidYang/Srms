@@ -18,5 +18,13 @@
  *  @return <#return value description#>
  */
 - (CGSize) sizeWithFont:(UIFont *)font maxiSize:(CGSize)size;
+/**
+ *  金额数据格式
+ *
+ *  @param numberString 需要修改格式的字符
+ *
+ *  @return <#return value description#>
+ */
++(NSString *)countNumAndChangeformat:(NSString *)numberString;
 
 @end

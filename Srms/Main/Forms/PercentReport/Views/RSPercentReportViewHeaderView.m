@@ -98,33 +98,6 @@
     NSArray *titleArray = @[@"货号",@"品名",@"SKU数",@"补货数",@"吊牌额",@"结算额",@"折扣(%)",@"收货数",@"占比(%)"];
     UILabel *lastTitleLabel = nil;
     for (NSInteger i = 0; i < 9; i ++) {
-        
-//        UILabel *lineLabel = [[UILabel alloc]init];
-//        if (i == 0) {
-//            
-//            lineLabel.backgroundColor = [UIColor colorWithHexString:@"#cccccc"];
-//        }else{
-//            
-//            lineLabel.backgroundColor = [UIColor clearColor];
-//        }
-//        [self.contentView addSubview:lineLabel];
-//        if (lastTitleLabel == nil) {
-//            [lineLabel mas_makeConstraints:^(MASConstraintMaker *make){
-//                
-//                make.width.mas_equalTo(0.6);
-//                make.left.equalTo(self.contentView.mas_left).offset(50);
-//                make.top.bottom.equalTo(self.contentView).offset(0);
-//            }];
-//            
-//        }else{
-//    
-//            [lineLabel mas_makeConstraints:^(MASConstraintMaker *make){
-//                
-//                make.width.mas_equalTo(0.6);
-//                make.left.equalTo(lastTitleLabel.mas_right).offset(0);
-//                make.top.bottom.equalTo(self.contentView).offset(0);
-//            }];
-//        }
         //计算字符串的大小
         CGSize size = [titleArray[i] sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:18.0f]}];
         float width = size.width;
@@ -138,7 +111,23 @@
             
             titleLable.textColor = [UIColor blackColor];
         }
-        titleLable.text = listArray[i];
+        
+        if (i <= 5 && i >= 3) {
+            
+            if (i == 3) {
+                
+                NSString *num = [NSString countNumAndChangeformat:listArray[i]];
+                titleLable.text = num;
+            }else{
+                NSString *numberString =  [NSString stringWithFormat:@"%@.00",[NSString countNumAndChangeformat:listArray[i]]];
+                titleLable.text = numberString;
+            }
+            
+        }else{
+            
+            titleLable.text = listArray[i];
+        }
+//        titleLable.text = listArray[i];
         titleLable.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:titleLable];
         if (i == 2 || i == 3 || i == 6 ) {

@@ -107,7 +107,14 @@
             numberLabel.font = [UIFont systemFontOfSize:15];
             numberLabel.textColor = [UIColor colorWithHexString:@"#4baf4f"];
             numberLabel.textAlignment = NSTextAlignmentCenter;
-            numberLabel.text = dataArray[i];
+            if(i != 4){
+                
+                NSString *numberString =  [NSString stringWithFormat:@"%@",[NSString countNumAndChangeformat:dataArray[i]]];
+                numberLabel.text = numberString;
+            }else{
+                
+                 numberLabel.text = dataArray[i];
+            }
             [self addSubview:numberLabel];
             [numberLabel mas_makeConstraints:^(MASConstraintMaker *make){
                 make.top.equalTo(line.mas_bottom).offset(0);

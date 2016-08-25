@@ -478,19 +478,20 @@ UIButton * button4;
         return [textField becomeFirstResponder];
     }
 }
-
 //订货
 -(void)orderClick{
     NSString * stringBool = @"SizeData";
     NSMutableArray* isArray = [[ShopSaveManage shareManager] getFFetchRequestData:@"ProductData" fieldName:@"goodsNo" fieldValue:_goodNoString];
     if (isArray.count>0) {
+        
         [[ShopSaveManage shareManager] deleteTableDataByFieldNameValue:@"ProductData" fieldName:@"goodsNo" fieldValue:_goodNoString];
         [[ShopSaveManage shareManager] saveLocaProduct:_dataDictionary];
     }else{
+        
         [[ShopSaveManage shareManager] saveLocaProduct:_dataDictionary];
     }
     [self orderOrMatched:stringBool];
-    }
+}
 //加入搭配区
 -(void)matchedClick:(UIButton *)sender{
     
@@ -533,17 +534,16 @@ UIButton * button4;
                         [sizeDic setObject:_disPriceString forKey:@"disPrice"];
                         
                         if ([stringBool isEqualToString:@"SizeData"]) {
+                            
                             [[ShopSaveManage shareManager] saveSizeDataLocaProduct:sizeDic];
                         }else{
-                        [[ShopSaveManage shareManager] saveMatchedDataLocaProduct:sizeDic];
+                            
+                            [[ShopSaveManage shareManager] saveMatchedDataLocaProduct:sizeDic];
                         }
-                        
-                        
                     }
                 }
             }
-            
-        }else{
+         }else{
             NSMutableDictionary * sizeDic =[[NSMutableDictionary alloc] init];
             for (int i = 0; i<numberTag+1; i++) {
                 for (int j=0; j<sizeArray.count; j++) {
@@ -571,8 +571,11 @@ UIButton * button4;
             [self httpGetOrdersGoods];
             //请求成功发送通知
         }else{
-            [self httpGetAddTempAssortArea];//加入搭配请求
+            //加入搭配请求
+            [self httpGetAddTempAssortArea];
         }
+    }else{
+        [self showLoadProgressViewWithMessage:@"还没有输入货品数量..." delay:2.0f];
     }
 }
 
@@ -612,7 +615,6 @@ UIButton * button4;
         SizeData * localcont = [seartchDataArray objectAtIndex:0];
         priceString = localcont.disPrice;
         _sizeNnm = localcont.totalQty.intValue;
-        
     }
     priceLabel3 =[[UILabel alloc] initWithFrame:CGRectMake(SIZEWidth-(SIZEWidth/3)-16-500, 10, 120, 20)];
     priceLabel3.textColor = [UIColor orangeColor];
@@ -636,7 +638,6 @@ UIButton * button4;
     [orderButton setBackgroundImage:[UIImage imageNamed:@"btn5_2"] forState:UIControlStateNormal];
     [orderButton addTarget:self action:@selector(orderClick) forControlEvents:UIControlEventTouchUpInside];
     [footView addSubview:orderButton];
-    
 //    加入搭配区
     UIButton * matchedBtn = [[UIButton alloc] initWithFrame:CGRectMake(SIZEWidth-(SIZEWidth/3)-180, 16, 160, 40)];
     [matchedBtn setBackgroundImage:[UIImage imageNamed:@"matched1"] forState:UIControlStateNormal];

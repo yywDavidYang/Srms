@@ -9,7 +9,7 @@
 #import "RSNetworkManager.h"
 #import "AFNetworking.h"
 // 设置超时时间
-static NSTimeInterval YYW_timeout = 30.0f;
+static NSTimeInterval YYW_timeout = 15.0f;
 // 设置最大的并发量
 static NSInteger YYW_operationCount = 3;
 

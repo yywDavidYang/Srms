@@ -152,8 +152,8 @@
                              [NSString stringWithFormat:@"%@",listmodel.goodsName],
                              [NSString stringWithFormat:@"%@",listmodel.sku],
                              [NSString stringWithFormat:@"%@",listmodel.quantity],
-                             [NSString stringWithFormat:@"%.2f",[listmodel.logoAmount floatValue]],
-                             [NSString stringWithFormat:@"%.2f",[listmodel.settlementAmount floatValue]],
+                             [NSString stringWithFormat:@"%@",listmodel.logoAmount],
+                             [NSString stringWithFormat:@"%@",listmodel.settlementAmount],
                              [NSString stringWithFormat:@"%.2f",[listmodel.discount floatValue]],
                              [NSString stringWithFormat:@"%@",listmodel.receiptNumber],
                              [NSString stringWithFormat:@"%0.2f",[listmodel.accounting floatValue]]];

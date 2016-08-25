@@ -1,5 +1,4 @@
-var imgNames = "0";
-
+var imgNames = 0;
 var lastObj = "",
 	lastIdx = 1,
 	mainObj = document.getElementsByClassName("mask")[0];
@@ -16,7 +15,6 @@ var pid = "",
 	pname = "";
 //var baseUrl = '',
 //	userno = "";
-
 var allInfos = "",
 	img_datas = "";
 var baseInfo = {};
@@ -86,11 +84,21 @@ function _menus_btns() {
 		window.location.href = window.location.href;
 	});
 	$("#opens").on("click", function() {
-		openPlans();
+		//		();
+		if(baseInfo.device == 1) {
+			openPlans();
+		} else if(baseInfo.device == 0) {
+			window.ContactInfo.openPlans();
+		}
 	});
 	//不保存退出
 	$("#saveNo").on("click", function() {
-		exit();
+		//		exit();
+		if(baseInfo.device == 1) {
+			exit();
+		} else if(baseInfo.device == 0) {
+			window.ContactInfo.exit();
+		}
 	});
 
 	$(".delete .deletes").on("click", function(ev) {
@@ -104,7 +112,7 @@ function _menus_btns() {
 		});
 		$.ajax({
 			type: "POST",
-			url: "http://192.168.9.175:8088/srmsapi/rs/assort/removeGood",
+			url: "http://192.168.9.175:8087/srmsapi/rs/assort/removeGood",
 			//		url: url+"/rs/assort/getTempAssortGoods",
 			data: JSON.stringify(data),
 			success: function(data) {
@@ -156,7 +164,7 @@ function _menus_btns() {
 			//			console.log(datas);
 			$.ajax({
 				type: "POST",
-				url: "http://192.168.9.175:8088/srmsapi/rs/assort/saveAssortPlan",
+				url: "http://192.168.9.175:8087/srmsapi/rs/assort/saveAssortPlan",
 				//		url: url+"/rs/assort/getTempAssortGoods",
 				data: JSON.stringify(datas),
 				success: function(data) {
@@ -189,15 +197,16 @@ function _get_infos() {
 	var datas = {};
 //	datas.userNo = "zl";
 //	datas.pid = 0;
-		datas.userNo = baseInfo.userNo;
-		datas.pid = baseInfo.pid;
+			datas.userNo = baseInfo.userNo;
+			datas.pid = baseInfo.pid;
+	//alert(11111);
 	$.ajax({
 		type: "POST",
-		url: "http://192.168.9.175:8088/srmsapi/rs/assort/getTempAssortGoods",
+		url: "http://192.168.9.175:8087/srmsapi/rs/assort/getTempAssortGoods",
 		//		url: url+"/rs/assort/getTempAssortGoods",
 		data: JSON.stringify(datas),
 		success: function(data) {
-			//			console.log(data);
+			//						console.log(data);
 			allInfos = data.msg;
 			_init_pic(data);
 		},
@@ -213,6 +222,7 @@ function _get_infos() {
 var ticking = false;
 
 function addHammers(obj) {
+
 	var newHammer = new Hammer.Manager(obj);
 	newHammer.add(new Hammer.Pan({
 		threshold: 0,
@@ -224,17 +234,25 @@ function addHammers(obj) {
 	newHammer.add(new Hammer.Pinch({
 		threshold: 0
 	})).recognizeWith([newHammer.get('pan'), newHammer.get('rotate')]);
+
 	newHammer.on("panstart panmove panend", onPan);
+	//	newHammer.on("panmove", onPanMove);
+	//	newHammer.on("panend", onPanEnd);
+
 	newHammer.on("rotatestart rotatemove rotateend", onRotate);
 	newHammer.on("pinchstart pinchmove pinchend", onPinch);
+    
+    }
+
+function onPanStatrt(ev) {
+	var lastPoint = lastObj.attr("tran");
+
 }
 
 function onPan(ev) {
-	var lastPoint = lastObj.attr("tran"),
-		lastnum = lastObj.attr("goodno");
-	if(lastnum != imgNames) {
+	var lastPoint = lastObj.attr("tran");
+	if(ev.type == "panmove") {
 		if(lastPoint) {
-			//			console.log(lastPoint);
 			lastPoint = lastPoint.split("_");
 			lastPosX = lastPoint[0];
 			lastPosY = lastPoint[1];
@@ -243,21 +261,23 @@ function onPan(ev) {
 			lastPosY = 0;
 		}
 	}
-	posX = ev.deltaX + parseInt(lastPosX);
-	posY = ev.deltaY + parseInt(lastPosY);
-	tra_t = "translate(" + posX + "px," + posY + "px)";
-	//	console.log(posX + "_" + posY);
+	if(ev.type == "panmove") {
+		posX = ev.deltaX + parseInt(lastPosX);
+		posY = ev.deltaY + parseInt(lastPosY);
+		tra_t = "translate(" + posX + "px," + posY + "px)";
+		console.log("移动中---->" + posX + "_" + posY);
+		changeTransform();
+	}
 	if(ev.type == "panend") {
 		var tran = posX + "_" + posY;
 		lastObj.attr("tran", tran);
 	}
-	changeTransform();
 }
 var initScale = 1;
 
 function onPinch(ev) {
-	var lastPoint = $(".show img .checked").attr("pull"),
-		lastnum = $(".show img .checked").attr("goodno");
+	var lastPoint = $(".show .checked").attr("pull");
+//		lastnum = $(".show .checked").attr("goodno");
 	if(ev.type == 'pinchstart') {
 		if(lastnum != imgNames) {
 			if(lastPoint) {
@@ -269,38 +289,41 @@ function onPinch(ev) {
 	}
 	if(ev.type == 'pinchmove') {
 		tra_r = 'scale(' + (initScale * ev.scale).toFixed(2) + ',' + (initScale * ev.scale).toFixed(2) + ')';
+		changeTransform();
 	}
 	//	console.log("拉伸的变化---->"+(initScale * ev.scale).toFixed(2)+ev.scale+initScale);
 	if(ev.type == 'pinchend') {
 		$(lastObj).attr("pull", (initScale * ev.scale).toFixed(2));
 	}
-	changeTransform();
+
 }
 var initAngle = 0;
 
 function onRotate(ev) {
-	var lastPoint = lastObj.attr("circu"),
-		lastnum = lastObj.attr("goodno");
+	var lastPoint = lastObj.attr("circu");
+	//		lastnum = lastObj.attr("goodno"); 
 	if(ev.type == 'rotatestart') {
-		if(lastnum != imgNames) {
-			if(lastPoint) {
-				initAngle = lastPoint;
-			} else {
-				initAngle = 0;
-			}
+		if(lastPoint) {
+			initAngle = lastPoint;
+		} else {
+			initAngle = 0;
 		}
+		logs("旋转开始---->",initAngle,ev.rotation);
 	}
 	if(ev.type == 'rotatemove') {
-		tra_p = 'rotate(' + parseInt(initAngle + ev.rotation) + 'deg)';
-		
+		tra_p = 'rotate(' +  parseInt(parseInt(initAngle) + ev.rotation) + 'deg)';
+		changeTransform();
+		logs("旋转...---->",initAngle,ev.rotation);
+	}
+
+	//	console.log("旋转的变化---->" + initAngle + parseInt(initAngle + ev.rotation));
+	if(ev.type == 'rotateend') {
+		initAngle = parseInt(initAngle) + ev.rotation;
+		$(lastObj).attr("circu", initAngle);
+		logs("旋转开始---->",initAngle,ev.rotation);
+		logs($(lastObj).attr("circu"),0,0);
 	}
 	
-//	console.log("旋转的变化---->" + initAngle + parseInt(initAngle + ev.rotation));
-	if(ev.type == 'rotateend') {
-		initAngle = parseInt(initAngle + ev.rotation);
-		$(lastObj).attr("circu", initAngle);
-	}
-	changeTransform();
 }
 
 //var initialScale = 1;
@@ -355,9 +378,9 @@ function changeTransform() {
 	//		console.log(lastObj[0].style.transform);
 	transforms = tra_t + " " + tra_p + " " + tra_r;
 	lastObj[0].style.transform = transforms;
-	lastObj[0].style.oTransform = transforms;
-	lastObj[0].style.msTransform = transforms;
-	lastObj[0].style.mozTransform = transforms;
+	//	lastObj[0].style.oTransform = transforms;
+	//	lastObj[0].style.msTransform = transforms;
+	//	lastObj[0].style.mozTransform = transforms;
 	lastObj[0].style.webkitTransform = transforms;
 }
 
@@ -421,14 +444,19 @@ function _init_pic(data) {
 		$(".show img").on("click", function(ev) {
 			ev.stopPropagation();
 			var trans = $(this)[0];
-			lastObj = $(this);
+			//			lastObj = $(this);
 			$(this).addClass("checked");
 			$(".mask").show();
 			$(".delete").show();
 			$(".info-line").removeClass("selected");
 			$(".right-v [goodno='" + $(this).attr("goodno") + "']").addClass("selected");
-			imgNames = $(this).attr("goodno");
-			addHammers(document.getElementsByClassName("checked")[0]);
+			var goodNumber = $(this).attr("goodno");
+			if(goodNumber != imgNames) {
+				imgNames = goodNumber;
+				lastObj = $(this);
+				addHammers(document.getElementsByClassName("checked")[0]);
+			}
+
 		});
 
 		$(".mask").on("click", function(ev) {

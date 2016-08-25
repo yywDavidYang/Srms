@@ -89,7 +89,6 @@
                                    [NSString stringWithFormat:@"%@",_reportNetwork.summarymodel.tagPriceAmount],
                                    discountString];
         [selfVC.barChartView loadFormsDataArray:sumModelArray];
-        
         // 获取柱状图的数据
         [selfVC.barChartView loadHistogramViewDataWithArray:_reportNetwork.orderBarGraphArray];
         // 加载饼状图数据

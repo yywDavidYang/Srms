@@ -62,8 +62,8 @@
                              [NSString stringWithFormat:@"%@",model.goodsName],
                              [NSString stringWithFormat:@"%@",@""],
                              [NSString stringWithFormat:@"%@",model.quantity],
-                             [NSString stringWithFormat:@"%.2f",[model.logoAmount floatValue]],
-                             [NSString stringWithFormat:@"%.2f",[model.settlementAmount floatValue]],
+                             [NSString stringWithFormat:@"%@",model.logoAmount],
+                             [NSString stringWithFormat:@"%@",model.settlementAmount],
                              [NSString stringWithFormat:@"%.2f",[model.discount floatValue]],
                              [NSString stringWithFormat:@"%@",model.receiptNumber],
                              [NSString stringWithFormat:@"%0.2f",[model.accounting floatValue]]];
@@ -96,8 +96,22 @@
             
             titleLable.textColor = [UIColor blackColor];
         }
-
-        titleLable.text = dataArray[i];
+        if (i <= 5 && i >= 3) {
+            
+            if (i == 3) {
+                
+                NSString *num = [NSString countNumAndChangeformat:dataArray[i]];
+                titleLable.text = num;
+            }else{
+                NSString *numberString =  [NSString stringWithFormat:@"%@.00",[NSString countNumAndChangeformat:dataArray[i]]];
+                titleLable.text = numberString;
+            }
+            
+        }else{
+            
+            titleLable.text = dataArray[i];
+        }
+        
         titleLable.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:titleLable];
         if (i == 2 || i == 3 || i == 6 ) {
@@ -118,7 +132,6 @@
                 make.top.equalTo(self.contentView.mas_top).offset(10);
                 make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
                 make.right.equalTo(self.contentView).offset(0);
-//                make.width.mas_equalTo(width + 20);
             }];
             
         }else if(i == 0){

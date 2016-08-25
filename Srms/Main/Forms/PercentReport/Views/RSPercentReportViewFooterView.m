@@ -44,8 +44,8 @@
                             [NSString stringWithFormat:@"%@",@""],
                             [NSString stringWithFormat:@"%@",sumModel.sumsku],
                             [NSString stringWithFormat:@"%@",sumModel.sumquantity],
-                            [NSString stringWithFormat:@"%.1f",[sumModel.sumlogoAmount floatValue]],
-                            [NSString stringWithFormat:@"%.1f",[sumModel.sumsettlementAmount floatValue]],
+                            [NSString stringWithFormat:@"%@",sumModel.sumlogoAmount],
+                            [NSString stringWithFormat:@"%@",sumModel.sumsettlementAmount],
                             [NSString stringWithFormat:@"%@",@""],
                             [NSString stringWithFormat:@"%@",sumModel.sumreceiptNumber],
                             [NSString stringWithFormat:@"%@",@"100%"]];
@@ -98,7 +98,19 @@
         titleLable.backgroundColor = [UIColor whiteColor];
         titleLable.textAlignment = NSTextAlignmentCenter;
         titleLable.textColor = [UIColor blackColor];
-
+        // 添加数字分割逗号
+//        if (i == 4|| i == 5) {
+//            
+//            NSString *numberString =  [NSString stringWithFormat:@"%@.0",[NSString countNumAndChangeformat:dataArray[i]]];
+//            titleLable.text = numberString;
+//        }else if (i == 2|| i == 3){
+//            
+//            NSString *numberString =  [NSString stringWithFormat:@"%@",[NSString countNumAndChangeformat:dataArray[i]]];
+//            titleLable.text = numberString;
+//        }else{
+//            
+//            titleLable.text = dataArray[i];
+//        }
         titleLable.text = dataArray[i];
         titleLable.font = [UIFont systemFontOfSize:15];
         [self addSubview:titleLable];
