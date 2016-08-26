@@ -57,7 +57,14 @@
     _histogramView.layer.masksToBounds = YES;
     _histogramView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_histogramView];
-    
+    RS_WeakSelf weaks = self;
+    _histogramView.pushToOrderDetailBlock = ^(NSString *goodPid){
+        RS_StrongSelf self = weaks;
+        if (self.pushToOrderDetailBlock) {
+            
+            self.pushToOrderDetailBlock(goodPid);
+        }
+    };
 }
 
 - (void) setAutolayout{

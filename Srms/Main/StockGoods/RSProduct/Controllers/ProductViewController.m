@@ -186,6 +186,7 @@ UIButton * button4;
     if (tableView == formTableView) {
         
         ProductCell * cell =[tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"cellwith%ld",(long)indexPath.row]];
+        
         if (!cell) {
             cell = [[ProductCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[NSString stringWithFormat:@"cellwith%ld",(long)indexPath.row]];
             
@@ -201,15 +202,12 @@ UIButton * button4;
                         NSString * j =[NSString stringWithFormat:@"%ld",(long)indexPath.row];
                         NSString * toA = [NSString stringWithFormat:@"%@",sizedata.totalA];
                         NSString * toB = [NSString stringWithFormat:@"%@",sizedata.totalB];
-       
                         if (j.intValue == toA.intValue && i == toB.intValue) {
                                 sizefiled.text = [NSString stringWithFormat:@"%@",sizedata.context];
-//                            NSLog(@"--->%@",sizefiled.text);
                                 numberRow = numberRow + sizefiled.text.intValue;
                         }
-                   }
+                    }
                 }
-                
                 sizefiled.textAlignment = NSTextAlignmentCenter;
                 sizefiled.borderStyle = UITextBorderStyleNone;
                 sizefiled.returnKeyType = UIReturnKeyNext;
@@ -223,7 +221,6 @@ UIButton * button4;
                 [cell.contentView addSubview:sizefiled];
                 [textfiledArray addObject:sizefiled];
 
-                
                 NSDictionary * dic = [sizeArray objectAtIndex:i];
                 NSArray *  array = [dic objectForKey:@"longs"];
                 NSDictionary * imageDic =[array objectAtIndex:0];
@@ -293,13 +290,12 @@ UIButton * button4;
         int num = 0;
         for (UILabel * label in numLabel) {
             num += [label.text intValue];
-}
+      }
         numberLabel.text = [NSString stringWithFormat:@"共 %d 件",num];
         [cell.contentView addSubview:numberLabel];
 
         return cell;
     }
-
     return nil;
 
 }
@@ -415,8 +411,7 @@ UIButton * button4;
                 
                     textField.userInteractionEnabled = NO;
                 }
-                
-        }
+            }
             
         }
         
@@ -494,8 +489,12 @@ UIButton * button4;
 }
 //加入搭配区
 -(void)matchedClick:(UIButton *)sender{
-    
-    [sender setBackgroundImage:[UIImage imageNamed:@"matched2"] forState:UIControlStateNormal];
+    if (sender.selected) {
+        
+        [self showLoadProgressViewWithMessage:@"已经加入搭配池" delay:2.0];
+        return;
+    }
+    sender.selected = YES;
     NSString * stringBool = @"MatchedData";
     NSMutableArray* isArray = [[ShopSaveManage shareManager] getFFetchRequestData:@"MatchedProduct" fieldName:@"goodsNo" fieldValue:_goodNoString];
     if (isArray.count>0) {
@@ -640,7 +639,9 @@ UIButton * button4;
     [footView addSubview:orderButton];
 //    加入搭配区
     UIButton * matchedBtn = [[UIButton alloc] initWithFrame:CGRectMake(SIZEWidth-(SIZEWidth/3)-180, 16, 160, 40)];
+    matchedBtn.selected = NO;
     [matchedBtn setBackgroundImage:[UIImage imageNamed:@"matched1"] forState:UIControlStateNormal];
+    [matchedBtn setBackgroundImage:[UIImage imageNamed:@"matched2"] forState:UIControlStateSelected];
     [matchedBtn addTarget:self action:@selector(matchedClick:) forControlEvents:UIControlEventTouchUpInside];
     [footView addSubview:matchedBtn];
 }
@@ -847,7 +848,6 @@ UIButton * button4;
         [titleView addSubview:evaluationImage];
 }
     
-    
     UIButton * evaluationButton =[[UIButton alloc] initWithFrame:CGRectMake(titleView.frame.size.width-166, 10, 70, 35)];
     evaluationButton.tag = 30001;
     [evaluationButton setBackgroundImage:[UIImage imageNamed:@"pingjia"] forState:UIControlStateNormal];
@@ -935,7 +935,6 @@ UIButton * button4;
             make.left.equalTo(lastLabel?lastLabel.mas_right:containView.mas_left).offset(10);
         }];
         
-       
         UILabel * priceLabel2 =[[UILabel alloc] init];
         priceLabel2.textColor = [UIColor greenColor];
         priceLabel2.backgroundColor = [UIColor clearColor];
@@ -993,7 +992,6 @@ UIButton * button4;
     substituteCellView.dataSource=self;
     substituteCellView.backgroundColor = [UIColor whiteColor];
   
-    
     NSArray * subarray =[_dataDictionary objectForKey:@"substitutes"];
     substituteCellView.contentSize = CGSizeMake((SIZEhight-504)/2*1.2*subarray.count, (SIZEhight-504)/2);
     
@@ -1018,6 +1016,7 @@ UIButton * button4;
     }
     if ([userArray containsObject:[PublicKit getPlistParameter:NameTextString]]) {
         
+        [self showLoadProgressViewWithMessage:@"已评价,不能再次评价" delay:2.0f];
     }else{
         RSAddCommentViewController * classView =[[RSAddCommentViewController alloc] init];
         classView.goodNoString = _goodNoString;
@@ -1653,7 +1652,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
     
     [goodassortDic setObject:otherString forKey:@"otherinfo"];
     [goodassortDic setObject:@"true" forKey:@"listeningStock"];
-    [goodassortDic setObject:@"" forKey:@"div"];
+    [goodassortDic setObject:@"0" forKey:@"div"];
     [goodassortDic setObject:@"" forKey:@"locations"];
     [goodassortDic setObject:@"" forKey:@"circu"];
     [goodassortDic setObject:@"" forKey:@"pull"];

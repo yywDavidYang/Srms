@@ -120,7 +120,6 @@
             _loginTipsLabel.hidden = NO;
             return;
         }
-        
         NSString * serveSreing =[PublicKit getPlistParameter:SERVER_ADDRESS_KEY];
         if([serveSreing isEqualToString:@""]||serveSreing == nil){
         
@@ -234,7 +233,6 @@
         _loginTipsLabel.hidden = NO;
     }
 }
-
 // 获取版本号
 - (NSString *)versionFromCurrenApp{
     

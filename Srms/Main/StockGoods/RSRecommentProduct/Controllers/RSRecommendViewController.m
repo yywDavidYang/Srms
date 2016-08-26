@@ -241,7 +241,7 @@
 - (void)notificationAction:(NSNotification *)noti{
     
     if ([noti.name isEqualToString:@"RSClassifyPopView"]) {
-        selectIndexPath = nil;
+//        selectIndexPath = nil;
         NSArray *dicArray = noti.userInfo[@"dic"];
         NSLog(@"获取到的数据 ＝ %@",dicArray);
         [self getGoodsDataWithParamsArray:dicArray];
@@ -311,7 +311,7 @@
     
 }
 -(void)categoryBtnClick:(UIButton * )sender{
-    selectIndexPath = nil;
+//    selectIndexPath = nil;
     NSLog(@"categoryNameString = %@, categoryString = %@",categoryNameString,categoryString);
     [sender addSubview:categoryBackImage];
     [categoryBackImage mas_updateConstraints:^(MASConstraintMaker *make){
@@ -429,7 +429,7 @@
 
 //品牌的跳转
 -(void)classliyClick{
-     selectIndexPath = nil;
+//     selectIndexPath = nil;
     categoryBackView.hidden = NO;
     catoaryTableView.hidden = NO;
     [self.view bringSubviewToFront:catoaryTableView];

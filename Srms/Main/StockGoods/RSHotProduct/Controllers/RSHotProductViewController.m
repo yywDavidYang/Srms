@@ -91,15 +91,15 @@
     if ([noti.name isEqualToString:@"RSClassifyPopView"]) {
         
         NSArray *dicArray = noti.userInfo[@"dic"];
-        selectIndexPath = nil;
+//        selectIndexPath = nil;
         NSLog(@"获取到的数据 ＝ %@",dicArray);
         [self getGoodsDataWithParamsArray:dicArray];
     }
 }
 
 -(void)layOutTopView{
-    topView =[[UIView alloc] initWithFrame:CGRectMake(5,45, self.view.frame.size.width-5, 50)];
-    
+    topView =[[UIView alloc] initWithFrame:CGRectMake(5,45, DeviceWidth - 75, 50)];
+    topView.backgroundColor = [UIColor whiteColor];
     classButton =[[UIButton alloc] initWithFrame:CGRectMake(0, 10, 120, 30)];
     [classButton setTitle:@"品牌" forState:UIControlStateNormal];
     [classButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -125,16 +125,15 @@
     [buttonMonth addTarget:self action:@selector(selectButton:) forControlEvents:UIControlEventTouchUpInside];
     [topView addSubview:buttonMonth];
     
-    searchText =[[UITextField alloc] initWithFrame:CGRectMake(self.view.frame.size.width-270, 10, 160, 30)];
+    searchText =[[UITextField alloc] initWithFrame:CGRectMake(topView.frame.size.width-184, 10, 160, 30)];
     searchText.textAlignment = NSTextAlignmentLeft;
     searchText.background =[UIImage imageNamed:@"btn8_02"];
     searchText.font =[UIFont systemFontOfSize:13.0f];
     searchText.placeholder = @"按商品号，商品名称查询";
     searchText.textColor = [UIColor blackColor];
-    
     [topView addSubview:searchText];
     
-    UIButton * searchButton =[[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-110, 10, 34, 30)];
+    UIButton * searchButton =[[UIButton alloc] initWithFrame:CGRectMake(topView.frame.size.width-34, 10, 34, 30)];
     [searchButton setBackgroundImage:[UIImage imageNamed:@"btn8_03"] forState:UIControlStateNormal];
     [searchButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [searchButton addTarget:self action:@selector(searchButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -317,7 +316,7 @@
 }
 -(void)categoryBtnClick:(UIButton * )sender{
      NSLog(@"categoryNameString = %@, categoryString = %@",categoryNameString,categoryString);
-    selectIndexPath = nil;
+//    selectIndexPath = nil;
     [sender addSubview:categoryBackImage];
     [categoryBackImage mas_updateConstraints:^(MASConstraintMaker *make){
         
@@ -425,7 +424,7 @@
 
 //日，周，月
 -(void)selectButton:(UIButton *)sender{
-    selectIndexPath = nil;
+//    selectIndexPath = nil;
     switch (sender.tag) {
         case 1:{
             sortKeyString = [NSString stringWithFormat:@"%ld",(long)sender.tag];
@@ -461,7 +460,7 @@
 
 //品牌的跳转
 -(void)classliyClick{
-    selectIndexPath = nil;
+//    selectIndexPath = nil;
     categoryBackView.hidden = NO;
     catoaryTableView.hidden = NO;
     [self.view bringSubviewToFront:catoaryTableView];
@@ -469,7 +468,7 @@
 }
 //搜索
 -(void)searchButton:(NSString *) string{
-    selectIndexPath = nil;
+//    selectIndexPath = nil;
     condictionStrText = searchText.text;
     [self httpRequestgetGoodsbyfliter];
 }

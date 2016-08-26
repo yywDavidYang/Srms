@@ -18,6 +18,7 @@ var pid = "",
 var allInfos = "",
 	img_datas = "";
 var baseInfo = {};
+var floors = 0;
 $(function() {
 	//	var baseInfo = getBaseInfo();//ios
 	//	var baseInfos = window.ContactInfo.getBaseInfo();//andriod
@@ -81,7 +82,15 @@ function _menus_btns() {
 	});
 	//新建
 	$("#new").on("click", function() {
-		window.location.href = window.location.href;
+//		window.location.href = window.location.href;
+	});
+	$(".ups").on("click", function() {
+		++floors;
+		$(".show .checked").attr("floors",floors).css({"z-index":floors});
+	});
+	$(".downs").on("click", function() {
+		--floors; 
+		$(".show .checked").attr("floors",floors).css({"z-index":floors});
 	});
 	$("#opens").on("click", function() {
 		//		();
@@ -146,7 +155,8 @@ function _menus_btns() {
 		pinfo.pimage = img_datas;
 		if($(".info-line").length > 0) {
 			pinfo.pid = ($(".info-line")[0]).getAttribute("pidnum");
-			pinfo.userNo = 'zl';
+//			pinfo.userNo = 'zl';
+			pinfo.userNo = baseInfo.userNo;
 			$.each($(".show img"), function(i, n) {
 				var imginfo = {};
 				imginfo.goodNo = $(this).attr("goodno");
@@ -197,8 +207,8 @@ function _get_infos() {
 	var datas = {};
 //	datas.userNo = "zl";
 //	datas.pid = 0;
-			datas.userNo = baseInfo.userNo;
-			datas.pid = baseInfo.pid;
+	datas.userNo = baseInfo.userNo;
+	datas.pid = baseInfo.pid;
 	//alert(11111);
 	$.ajax({
 		type: "POST",
@@ -226,10 +236,9 @@ function addHammers(obj) {
 	var newHammer = new Hammer.Manager(obj);
 	newHammer.add(new Hammer.Pan({
 		threshold: 0,
-		pointers: 0
 	}));
 	newHammer.add(new Hammer.Rotate({
-		threshold: 0
+		threshold: 1
 	})).recognizeWith(newHammer.get('pan'));
 	newHammer.add(new Hammer.Pinch({
 		threshold: 0
@@ -241,13 +250,11 @@ function addHammers(obj) {
 
 	newHammer.on("rotatestart rotatemove rotateend", onRotate);
 	newHammer.on("pinchstart pinchmove pinchend", onPinch);
-    
-    }
-
-function onPanStatrt(ev) {
-	var lastPoint = lastObj.attr("tran");
-
 }
+
+//function onPanStatrt(ev) {
+//	var lastPoint = lastObj.attr("tran");
+//}
 
 function onPan(ev) {
 	var lastPoint = lastObj.attr("tran");
@@ -260,18 +267,22 @@ function onPan(ev) {
 			lastPosX = 0;
 			lastPosY = 0;
 		}
+		console.log(ev);
 	}
 	if(ev.type == "panmove") {
 		posX = ev.deltaX + parseInt(lastPosX);
 		posY = ev.deltaY + parseInt(lastPosY);
-		tra_t = "translate(" + posX + "px," + posY + "px)";
+		tra_t = "translate(" + posX + "px," + posY + "px)"; 
 		console.log("移动中---->" + posX + "_" + posY);
+//		console.log(ev);
 		changeTransform();
 	}
 	if(ev.type == "panend") {
 		var tran = posX + "_" + posY;
 		lastObj.attr("tran", tran);
+		console.log(ev);
 	}
+
 }
 var initScale = 1;
 
@@ -301,78 +312,33 @@ var initAngle = 0;
 
 function onRotate(ev) {
 	var lastPoint = lastObj.attr("circu");
-	//		lastnum = lastObj.attr("goodno"); 
+	//		lastnum = lastObj.attr("goodno");
 	if(ev.type == 'rotatestart') {
+        var addAngle = 0;
 		if(lastPoint) {
 			initAngle = lastPoint;
 		} else {
 			initAngle = 0;
 		}
-		logs("旋转开始---->",initAngle,ev.rotation);
+        initAngle = parseInt(initAngle) - ev.rotation;
+        logs("旋转开始---->",ev.rotation,initAngle);
 	}
 	if(ev.type == 'rotatemove') {
-		tra_p = 'rotate(' +  parseInt(parseInt(initAngle) + ev.rotation) + 'deg)';
+		tra_p = 'rotate(' + parseInt(initAngle + ev.rotation )%360 + 'deg)';
 		changeTransform();
-		logs("旋转...---->",initAngle,ev.rotation);
+		logs("旋转---->",ev.rotation,initAngle);
 	}
 
 	//	console.log("旋转的变化---->" + initAngle + parseInt(initAngle + ev.rotation));
 	if(ev.type == 'rotateend') {
-		initAngle = parseInt(initAngle) + ev.rotation;
+		initAngle = parseInt(initAngle + ev.rotation )%360;
 		$(lastObj).attr("circu", initAngle);
-		logs("旋转开始---->",initAngle,ev.rotation);
-		logs($(lastObj).attr("circu"),0,0);
+		logs("旋转结束---->",ev.rotation,initAngle);
+//		console.log($(lastObj).attr("circu"),0,0);
 	}
 	
+	
 }
-
-//var initialScale = 1;
-//
-//function pinchAndRotate() {
-//	var cobjs = new Hammer.Manager(document.getElementsByClassName("checked")[0]);
-//	var pinch = new Hammer.Pinch(); //缩放
-//	var rotate = new Hammer.Rotate(); //旋转
-//	rotate.recognizeWith(pinch);
-//	cobjs.add([pinch, rotate]);
-//	var pinchs = "",
-//		rotates = "";
-//	cobjs.on("pinch rotate", function(ev) {
-//		ev.preventDefault();
-//		if(ev.type == "pinch") {
-//			tra_p = 'rotate(' + parseInt(ev.rotation) + 'deg)';
-//		}
-//		if(ev.type == "rotate") {
-//			currentScale = ev.scale - 1;
-//			currentScale = initialScale + currentScale;
-//			currentScale = currentScale > 5 ? 5 : currentScale;
-//			tra_r = 'scale(' + currentScale + ',' + currentScale + ')';
-//		}
-//		changeTransform();
-//	});
-//}
-//
-//function pans() {
-//	if(lastObj) {
-//		posX = 0;
-//		posY = 0;
-//		var cobjs = new Hammer($(".checked")[0]);
-//		cobjs.on("pan panend", function(ev) {
-//			ev.preventDefault();
-//			posX = ev.deltaX + lastPosX;
-//			posY = ev.deltaY + lastPosY;
-//			tra_t = "translate(" + posX + "px," + posY + "px)";
-//			changeTransform();
-//			//			console.log("ev.deltaX ——> "+ev.deltaX+"  ev.deltaY ---> " +ev.deltaY)
-//		});
-//	}
-//}
-//
-//function taps() {
-//	if(document.getElementsByClassName("checked")[0]) {
-//		var cobjs = Hammer($(".checked")[0]);
-//		cobjs.on("tap", function(ev) {});
-//	}
-//}
 
 function changeTransform() {
 	//		console.log(lastObj[0].style.transform);
@@ -436,7 +402,7 @@ function _init_pic(data) {
 			line_info += '</table></div>';
 			line_info += '<div class="col-sm-12 no-p"><hr /></div>';
 			line_info += '<div class="col-sm-12"><div class="col-sm-6 col-sm-offset-3 btns">加入到补货池</div></div></div></div>';
-			img_html += '<img class="imgs" src="' + JSON.parse(n.otherinfo)[0].mainPictureUrl + '" goodno="' + JSON.parse(n.otherinfo)[0].goodsInfo.goodsno + '" pidNum = "' + n.pid + '" tran = "' + n.translation + '" pull = "' + n.pull + '"  circu = "' + n.circu + '" style= "' + changeRotates(n.translation, n.pull, n.circu) + 'z-index:0"/>';
+			img_html += '<img class="imgs" src="' + JSON.parse(n.otherinfo)[0].mainPictureUrl + '" goodno="' + JSON.parse(n.otherinfo)[0].goodsInfo.goodsno + '" pidNum = "' + n.pid + '" floors = "' + n.div + '" tran = "' + n.translation + '" pull = "' + n.pull + '"  circu = "' + n.circu + '" style= "' + changeRotates(n.translation, n.pull, n.circu) + 'z-index:' + n.div + '"/>';
 		});
 		$(".show").html(img_html);
 		$(".right-v").html(line_info);
@@ -448,6 +414,7 @@ function _init_pic(data) {
 			$(this).addClass("checked");
 			$(".mask").show();
 			$(".delete").show();
+			floors = parseInt($(this).attr("floors"));
 			$(".info-line").removeClass("selected");
 			$(".right-v [goodno='" + $(this).attr("goodno") + "']").addClass("selected");
 			var goodNumber = $(this).attr("goodno");
@@ -466,9 +433,7 @@ function _init_pic(data) {
 			$(this).css({
 				"display": "none"
 			});
-			$(".show img").removeClass("checked").css({
-				"z-index": 2
-			});
+			$(".show img").removeClass("checked");
 		});
 
 		$(".info-line").on("click", function(ev) {
@@ -481,6 +446,7 @@ function _init_pic(data) {
 			lastObj = $('.show [goodno = "' + num + '"]');
 			$(".mask").show();
 			$(".delete").show();
+			floors = parseInt(('.show [goodno = "' + num + '"]').attr("floors"));
 			$(".show img [goodno='" + num + "']").addClass("checked");
 			var trans = $(".show img [goodno='" + num + "']");
 			imgNames = $(this).attr("goodno");

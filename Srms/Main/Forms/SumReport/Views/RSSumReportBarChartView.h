@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface RSSumReportBarChartView : UIView
+// 回传货号进行订单详情条转
+@property(nonatomic,strong) void(^pushToOrderDetailBlock)(NSString *goodNo);
 // 加载表格数据
 - (void) loadFormsDataArray:(NSArray *)array;
 /**

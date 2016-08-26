@@ -12,6 +12,7 @@
 #import "RSReportNetwork.h"
 #import "RSSumReportPieChartView.h"
 #import "RSCalendarView.h"
+#import "ShoppingCartViewController.h"
 
 
 @interface RSSumReportViewController ()
@@ -72,6 +73,7 @@
     [self initData];
     [self createUI];
     [self topViewButtonClick];
+    [self pushToShoppingView];
 }
 
 - (void)getData{
@@ -132,16 +134,13 @@
         make.height.mas_equalTo(275);
     }];
     
-    
     [_pieChartView mas_makeConstraints:^(MASConstraintMaker *make){
     
         make.left.right.equalTo(self.view);
         make.top.equalTo(_barChartView.mas_bottom).offset(0);
         make.bottom.equalTo(self.view);
     }];
-    
 }
-
 - (void) topViewButtonClick{
     __block RSSumReportViewController *selfVC = self;
     _topView.sumReportBtn = ^(UIButton *btn){
@@ -185,7 +184,6 @@
     else if (btn.tag == 20119){
         
         [self getData];
-        
     }
     else if (btn.tag == 20111){
         
@@ -195,6 +193,24 @@
         _dateButton = btn;
         [self showCalendar];
     }
+}
+
+//条转到订单详情
+- (void) pushToShoppingView{
+    RS_WeakSelf weaks = self;
+    _barChartView.pushToOrderDetailBlock = ^(NSString *pidString){
+        RS_StrongSelf self = weaks;
+        if ([pidString isEqualToString:@""]) {
+            
+            [self showLoadProgressViewWithMessage:@"请选中柱形图" delay:2.0f];
+        }else{
+            
+            ShoppingCartViewController * shopCartView= [[ShoppingCartViewController alloc] init];
+            shopCartView.currentNavigationController = self.currentNavigationController;
+            shopCartView.orderIDString = pidString;
+            [self.currentNavigationController pushViewController:shopCartView animated:YES];
+        }
+    };
 }
 
 // 显示日历
@@ -240,17 +256,11 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
     NSDateComponents *comps = nil;
-    
     comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitMonth fromDate:mydate];
-    
     NSDateComponents *adcomps = [[NSDateComponents alloc] init];
-    
     [adcomps setYear:0];
-    
     [adcomps setMonth:month];
-    
     [adcomps setDay:0];
     NSDate *newdate = [calendar dateByAddingComponents:adcomps toDate:mydate options:0];
     NSString *beforDate = [dateFormatter stringFromDate:newdate];

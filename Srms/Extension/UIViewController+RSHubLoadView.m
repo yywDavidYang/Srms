@@ -59,7 +59,10 @@
             [view removeFromSuperview];
         }
     }
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    MBProgressHUD *hud = [[MBProgressHUD alloc]init];
+//    [self.view addSubview:hud];
+//    [hud show:YES];
     hud.center = self.view.center;
     hud.yOffset = 100.0f;
     hud.mode = MBProgressHUDModeText;

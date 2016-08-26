@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) BarChartView *barChartView;
 @property (nonatomic, strong) BarChartData *data;
-
+@property (nonatomic, strong) NSArray *dataArray;
 @end
 @implementation RSSumReportHistogramView
 
@@ -62,7 +62,10 @@
 
 //为柱形图设置数据
 - (void)setHistogramDataWithModelArray:(NSArray *)dataArray{
-    
+    if (dataArray.count > 0) {
+        
+        _dataArray = dataArray;
+    }
     RSOrderBarGraphModel *modelBig = [dataArray firstObject];
     for (NSInteger i = 1; i < dataArray.count; i ++) {
         
@@ -178,22 +181,35 @@
 //点击选中柱形时回调
 - (void)chartValueSelected:(ChartViewBase * _Nonnull)chartView entry:(ChartDataEntry * _Nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * _Nonnull)highlight{
     
-    NSLog(@"---chartValueSelected---value: %g", entry.value);
+    if (_dataArray.count >= entry.xIndex) {
+        RSOrderBarGraphModel *modelBig = _dataArray[entry.xIndex];
+//        NSDictionary *userInfo = @{@"selectGoodsNo":[NSString stringWithFormat:@"%@",modelBig.orderID]};
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"ChartDataValueSelected" object:self userInfo:userInfo];
+        if (self.pushToOrderDetailBlock) {
+         
+            self.pushToOrderDetailBlock(modelBig.orderID);
+        }
+    }
+    NSLog(@"---index = %ld",(long)entry.xIndex);
 }
 //没有选中柱形图时回调，当选中一个柱形图后，在空白处双击，就可以取消选择，此时会回调此方法
 - (void)chartValueNothingSelected:(ChartViewBase * _Nonnull)chartView{
-    
+   
     NSLog(@"---chartValueNothingSelected---");
 }
 //放大图表时回调
 - (void)chartScaled:(ChartViewBase * _Nonnull)chartView scaleX:(CGFloat)scaleX scaleY:(CGFloat)scaleY{
     
-    NSLog(@"---chartScaled---scaleX:%g, scaleY:%g", scaleX, scaleY);
+//    NSLog(@"---chartScaled---scaleX:%g, scaleY:%g", scaleX, scaleY);
+    if (self.pushToOrderDetailBlock) {
+        
+        self.pushToOrderDetailBlock(@"");
+    }
 }
 //拖拽图表时回调
 - (void)chartTranslated:(ChartViewBase * _Nonnull)chartView dX:(CGFloat)dX dY:(CGFloat)dY{
     
-    NSLog(@"---chartTranslated---dX:%g, dY:%g", dX, dY);
+//    NSLog(@"---chartTranslated---dX:%g, dY:%g", dX, dY);
 }
 
 
